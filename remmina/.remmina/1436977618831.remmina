@@ -1,0 +1,18 @@
+[remmina]
+ssh_auth=0
+ssh_charset=
+ssh_privatekey=
+group=
+password=
+name=Chat Ops
+ssh_username=devops
+exec=
+ssh_server=10.2.28.224
+protocol=SSH
+ssh_enabled=1
+server=10.2.28.224
+window_maximize=0
+window_width=1538
+window_height=1003
+keyboard_grab=0
+viewmode=1

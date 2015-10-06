@@ -1,0 +1,141 @@
+! Solarized
+!! special
+!*.foreground:   #93a1a1
+!*.background:   #002b36
+!*.cursorColor:  #93a1a1
+!
+!! black
+!*.color0:       #002b36
+!*.color8:       #657b83
+!
+!! red
+!*.color1:       #dc322f
+!*.color9:       #dc322f
+!
+!! green
+!*.color2:       #859900
+!*.color10:      #859900
+!
+!! yellow
+!*.color3:       #b58900
+!*.color11:      #b58900
+!
+!! blue
+!*.color4:       #268bd2
+!*.color12:      #268bd2
+!
+!! magenta
+!*.color5:       #6c71c4
+!*.color13:      #6c71c4
+!
+!! cyan
+!*.color6:       #2aa198
+!*.color14:      #2aa198
+!
+!! white
+!*.color7:       #93a1a1
+!*.color15:      #fdf6e3
+
+! Monokai
+! special
+*.foreground:   #f8f8f2
+*.background:   #272822
+*.cursorColor:  #f8f8f2
+
+! black
+*.color0:       #272822
+*.color8:       #75715e
+
+! red
+*.color1:       #f92672
+*.color9:       #f9025b
+
+! green
+*.color2:       #a6e22e
+*.color10:      #9ae209
+
+! yellow
+*.color3:       #f4bf75
+*.color11:      #f49f27
+
+! blue
+*.color4:       #66d9ef
+*.color12:      #009eec
+
+! magenta
+*.color5:       #ae81ff
+*.color13:      #6e1fff
+
+! cyan
+*.color6:       #a1efe4
+*.color14:      #00ffb2
+
+! white
+*.color7:       #f8f8f2
+*.color15:      #f9c426
+
+URxvt*font: xft:Ubuntu Mono derivative Powerline:size=12
+
+!URxvt*.transparent: true
+! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
+!URxvt*.shading: 25
+! True transparency does not work in VM with vesa driver
+ URxvt.depth: 32
+ URxvt.background: [80]#272822
+
+! scrollbar style - rxvt (default), plain (most compact), next, or xterm
+URxvt.scrollstyle: plain
+
+! Set the scrollbar width in pixels.
+! URxvt*thickness: number
+
+! True: enable the scrollbar [default]; option -sb. False: disable the scrollbar;
+URxvt*scrollBar: false
+
+! True: place the scrollbar on the right of the window; option -sr.
+URxvt*scrollBar_right: true
+
+! True: display an rxvt scrollbar without a trough; option -st.
+URxvt*scrollBar_floating: boolean
+
+! Align the top, bottom or centre [default] of the scrollbar thumb with the
+! URxvt*scrollBar_align: mode
+
+! True: scroll to bottom when tty receives output; option -si.  False: do not
+URxvt*scrollTtyOutput: false
+
+! True: scroll with scrollback buffer when tty receives new lines
+URxvt*scrollWithBuffer: true
+
+! True: scroll to bottom when a non-special key is pressed. Special keys are those
+URxvt*scrollTtyKeypress: true
+
+! Save number lines in the scrollback buffer [default 64]. This resource is
+URxvt*saveLines: 1000
+
+!                       ---=== urxvt-perls ===---
+URxvt.perl-ext: default
+URxvt.perl-ext-common: ...,url-select,keyboard-select,clipboard
+
+! == url select
+URxvt.keysym.M-u: perl:url-select:select_next
+! if set to true, selected URLs are automatically copied to the PRIMARY buffer
+URxvt.url-select.autocopy: false
+!mouse button to click-open URLs (default: 2)
+!URxvt.url-select.button: 
+URxvt.url-select.launcher: /usr/bin/dwb -n -x open
+!if set to true, all URLs get underlined
+URxvt.url-select.underline: true
+
+! == clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+! == keyboard select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+! disable annoying Ctrl-Shift behaviour
+URxvt.iso14755: false
+

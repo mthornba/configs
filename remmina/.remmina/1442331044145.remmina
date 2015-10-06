@@ -1,0 +1,18 @@
+[remmina]
+ssh_auth=0
+ssh_charset=
+ssh_privatekey=
+group=
+password=
+name=Arch at OT
+ssh_username=root
+exec=
+ssh_server=10.2.28.176
+protocol=SSH
+ssh_enabled=1
+server=10.2.28.176
+window_maximize=0
+window_width=1019
+window_height=800
+viewmode=1
+keyboard_grab=0
