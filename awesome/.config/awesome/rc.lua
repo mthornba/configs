@@ -10,6 +10,53 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+ -- Quick launch bar widget BEGINS
+ function find_icon(icon_name, icon_dirs)
+    if string.sub(icon_name, 1, 1) == '/' then
+       if util.file_readable(icon_name) then
+          return icon_name
+       else
+          return nil
+       end
+    end
+    if icon_dirs then
+       for _, v in ipairs(icon_dirs) do
+          if util.file_readable(v .. "/" .. icon_name) then
+             return v .. '/' .. icon_name
+          end
+       end
+    end
+    return nil
+ end
+ 
+ function getValue(t, key)
+    _, _, res = string.find(t, key .. " *= *([^%c]+)%c")
+    return res
+ end
+ 
+ launchbar = { layout = awful.widget.layout.horizontal.leftright }
+ filedir = "/home/mthornba/Desktop" -- Specify your folder with shortcuts here
+ local items = {}
+ local files = io.popen("ls " .. filedir .. "*.desktop")
+ for f in files:lines() do
+     local t = io.open(f):read("*all")
+     table.insert(items, { image = find_icon(getValue(t,"Icon"), 
+                                             { "/usr/share/icons/hicolor/22x22/apps" }),
+                           command = getValue(t,"Exec"),
+                           tooltip = getValue(t,"Name"),
+                           position = tonumber(getValue(t,"Position")) or 255 })
+ end
+ table.sort(items, function(a,b) return a.position < b.position end)
+ for i = 1, table.getn(items) do
+      local txt = launchbar[i].tooltip
+    launchbar[i] = awful.widget.launcher(items[i])
+      local tt = awful.tooltip ({ objects = { launchbar[i] } })
+      tt:set_text (txt)
+      tt:set_timeout (0)
+ end
+ 
+ -- Quick launch bar widget ENDS
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -37,10 +84,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+-- terminal = "x-terminal-emulator --hide-menubar"
+terminal = "/usr/bin/urxvt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -74,7 +122,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ "Default", "Web", "Reference", "Windows", 5, 6, 7, 8, 9 }, s, layouts[1])
 end
 -- }}}
 
@@ -89,7 +137,8 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "open terminal", terminal }
+                                    { "open terminal", terminal },
+                                    { "open desktop", "nautilus -w --no-desktop /home/mthornba/Desktop" }
                                   }
                         })
 
@@ -174,6 +223,7 @@ for s = 1, screen.count() do
     mywibox[s].widgets = {
         {
             mylauncher,
+            launcher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
@@ -216,8 +266,8 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -252,7 +302,17 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+
+    -- Brightness Control
+    awful.key({ }, "XF86MonBrightnessDown", function ()
+        awful.util.spawn("xbacklight -dec 15") end),
+    awful.key({ }, "XF86MonBrightnessUp", function ()
+        awful.util.spawn("xbacklight -inc 15") end),
+
+   -- Lock Screen
+   awful.key({ modkey }, "F12", function ()
+        awful.util.spawn("/usr/bin/xscreensaver-command -lock") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -332,7 +392,8 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+                     size_hints_honor = false } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
@@ -375,3 +436,7 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
+ local util = require('awful.util')
+ 
