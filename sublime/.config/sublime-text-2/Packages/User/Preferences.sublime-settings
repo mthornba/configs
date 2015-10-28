@@ -1,10 +1,15 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"color_scheme": "Packages/Monokai JSON+/Monokai JSON+.tmTheme",
 	"default_line_ending": "unix",
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 11,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
 	"set_line_endings": "unix",
 	"tab_size": 2,
+	"theme": "amCoder.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true
