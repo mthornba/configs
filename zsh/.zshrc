@@ -51,7 +51,7 @@ plugins=(git git_override)
 
 # User configuration
 
-export PATH="/home/mthornba/anaconda/bin:/home/mthornba/bin:/home/mthornba/git/mthornba/scripts:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/mthornba/anaconda/bin:/home/mthornba/bin:/home/mthornba/bin/node_modules/.bin:/home/mthornba/git/mthornba/scripts:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 # export PYTHONPATH="/home/mthornba/git/public/protobuf:/home/mthornba/git/public/caffe"
 # export LD_LIBRARY_PATH="/usr/local/lib;/usr/lib"
