@@ -143,12 +143,12 @@ URxvt.keysym.M-s: perl:keyboard-select:search
 ! disable annoying Ctrl-Shift behaviour
 URxvt.iso14755: false
 
-xterm*VT100.geometry:     80x25
+xterm*VT100.geometry:     140x40
 !xterm*faceName:           Ubuntu Mono:style=Regular:size=12
-!xterm*font:              xft:Ubuntu Mono derivative Powerline:size=12
-xterm*faceName: xft:Ubuntu Mono derivative Powerline:size=12
+!xterm*faceName:           xft:Ubuntu Mono derivative Powerline:size=12
+xterm*faceName:           xft:DejaVu Sans Mono for Powerline:size=10
 xterm*dynamicColors:      true
-xterm*utf8:               2
+xterm*utf8:               1
 xterm*eightBitInput:      true
 xterm*saveLines:          2000
 xterm*scrollKey:          true
@@ -160,3 +160,7 @@ xterm*multiScroll:        true
 xterm*toolBar:            false
 !xterm*background:         black
 !xterm*foreground:         white
+
+! the following line should copy selection to both PRIMARY and CLIPBOARD, but does not seem to work
+!XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+xterm*selectToClipboard:  true
