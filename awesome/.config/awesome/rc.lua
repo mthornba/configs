@@ -313,7 +313,8 @@ globalkeys = awful.util.table.join(
 
    -- Lock Screen
    awful.key({ modkey }, "F12", function ()
-        awful.util.spawn("/usr/bin/xscreensaver-command -lock") end)
+--        awful.util.spawn("/usr/bin/xscreensaver-command -lock") end)
+        awful.util.spawn("/usr/bin/i3lock -i /home/mthornba/Pictures/Wallpaper/sunrise_water.jpg -tdc 002b36") end)
 )
 
 clientkeys = awful.util.table.join(
