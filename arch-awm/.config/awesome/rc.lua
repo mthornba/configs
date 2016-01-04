@@ -271,7 +271,11 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+
+    -- Lock Screen
+    awful.key({ modkey }, "F12", function ()
+        awful.util.spawn("/usr/bin/i3lock -i /home/mthornba/Pictures/Wallpaper/arch_on_dark.png -tdc 002b36") end)
 )
 
 clientkeys = awful.util.table.join(
