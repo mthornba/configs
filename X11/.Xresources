@@ -79,10 +79,10 @@ URxvt*font: xft:Ubuntu Mono derivative Powerline:size=12
 
 !URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-!URxvt*.shading: 25
+!URxvt*.shading: 80
 ! True transparency does not work in VM with vesa driver
- URxvt.depth: 32
-! URxvt.background: [80]#272822
+URxvt.depth: 32
+URxvt.background: [80]#272822
 
 ! scrollbar style - rxvt (default), plain (most compact), next, or xterm
 URxvt.scrollstyle: plain
