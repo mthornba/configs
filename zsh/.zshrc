@@ -83,10 +83,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ke="knife environment"
+alias kr="knife role"
+alias kcb="knife cookbook"
+alias kcl="knife client"
+alias kn="knife node"
+alias kv="knife vsphere"
 
 function csdiff () { sdiff -w $(stty size | awk '{print $NF}') $@ | colordiff; }
 function rolediff () { csdiff <(knife role show ${1%.json} -Fj) ${1} }
 function envdiff () { csdiff <(knife environment show ${1%.json} -Fj) ${1} }
 function dbdiff () { csdiff <(knife data bag show $1 env -Fj) ${1}/env.json | less }
+# Strip final EOL from a file
+function chompeol () { printf %s "$(cat $1)" > $1 }
 
 eval "$(thefuck --alias fuck)"
