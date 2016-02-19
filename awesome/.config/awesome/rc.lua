@@ -123,7 +123,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "Dev", "Web", "Reference", "Windows", "Chat", 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ "1:", "2:", "3:", "4:", "5:", "6:", "7: ", "8: ", "9: " }, s, layouts[2])
 end
 -- }}}
 
@@ -139,7 +139,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
                                     { "open terminal", terminal },
-                                    { "open desktop", "nautilus -w --no-desktop /home/mthornba/Desktop" }
+                                    { "open desktop", "thunar file:/home/mthornba/Desktop" }
                                   }
                         })
 
@@ -311,10 +311,21 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86MonBrightnessUp", function ()
         awful.util.spawn("xbacklight -inc 15") end),
 
+    -- Volume Control
+    awful.key({ }, "XF86AudioLowerVolume", function ()
+        awful.util.spawn('sh -c "pactl set-sink-mute 0 false ; pactl -- set-sink-volume 0 -10%"') end),
+    awful.key({ }, "XF86AudioRaiseVolume", function ()
+        awful.util.spawn('sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +10%"') end),
+    awful.key({ }, "XF86AudioMute", function ()
+        awful.util.spawn("pactl set-sink-mute 0 toggle") end),
+
    -- Lock Screen
    awful.key({ modkey }, "F12", function ()
---        awful.util.spawn("/usr/bin/xscreensaver-command -lock") end)
-        awful.util.spawn("/usr/bin/i3lock -i /home/mthornba/Pictures/Wallpaper/sunrise_water.jpg -tdc 002b36") end)
+        awful.util.spawn("/usr/bin/i3lock -p win -tdc 002b36 -i /home/mthornba/Pictures/Wallpaper/cat_unicorn.png") end),
+
+   -- Snippy
+   awful.key({ modkey }, "s", function ()
+        awful.util.spawn("/home/mthornba/git/public/gitlab-encephalon/scripts/snippy.sh") end)
 )
 
 clientkeys = awful.util.table.join(
