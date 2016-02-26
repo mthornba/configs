@@ -136,8 +136,32 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
+myfavsmenu = {
+   { "Atom", "/usr/share/atom/atom" },
+   { "Sublime 2", '/usr/local/Sublime\\ Text\\ 2/sublime_text' },
+   { "Slack", "/usr/share/slack/slack" },
+   { "Pidgin", "pidgin" },
+   { "Chrome", "/usr/bin/google-chrome-stable" },
+   { "Firefox", "firefox" },
+   { "Remmina", "remmina" },
+   { "Shutter", "shutter" },
+   { "Thunar", "thunar" },
+   { "Plex", "/opt/google/chrome/google-chrome --app=http://plex.tv/web/app" },
+   { "Spotify", "spotify" },
+   { "Synergy", "synergy" },
+   { "Gnome SysMon", "gnome-system-monitor" },
+   { "Windows 7", '/usr/lib/virtualbox/VirtualBox --comment "Windows 7" --startvm "5245bc87-94da-4c9b-a6f3-254403c8d1a2"' },
+   { "Arch Linux", '/usr/lib/virtualbox/VirtualBox --comment "clean arch linux_4" --startvm "08bf8997-4b97-434a-ad7e-11899e830435"' },
+   { "Notes - Personal", "/opt/google/chrome/google-chrome --app=file:///home/mthornba/git/public/gitlab-encephalon/notes/Personal/Notes.chunked/index.html" },
+   { "Notes - Core", "/opt/google/chrome/google-chrome --app=file:///home/mthornba/git/mthornba/Notes/Core\\ Guide/Core_Guide.chunked/index.html" },
+   { "Cisco VPN", "/opt/cisco/anyconnect/bin/vpnui" },
+   { "Dia", "/usr/bin/dia" },
+   { "PulseAudio", "pavucontrol" },
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
+                                    { "Favs", myfavsmenu },
                                     { "open terminal", terminal },
                                     { "open desktop", "thunar file:/home/mthornba/Desktop" }
                                   }
