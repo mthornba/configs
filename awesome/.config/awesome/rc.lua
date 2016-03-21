@@ -136,32 +136,58 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-myfavsmenu = {
+myfavsmenu = {}
+
+myfavsmenu["Dev"] = {
    { "Atom", "/usr/share/atom/atom" },
    { "Sublime 2", '/usr/local/Sublime\\ Text\\ 2/sublime_text' },
-   { "Slack", "/usr/share/slack/slack" },
-   { "Pidgin", "pidgin" },
+   { "Cisco VPN", "/opt/cisco/anyconnect/bin/vpnui" },
+}
+
+myfavsmenu["Apps"] = {
    { "Chrome", "/usr/bin/google-chrome-stable" },
    { "Firefox", "firefox" },
    { "Remmina", "remmina" },
    { "Shutter", "shutter" },
-   { "Thunar", "thunar" },
+   { "Synergy", "synergy" },
+   { "Dia", "/usr/bin/dia" },
+}
+
+myfavsmenu["Chat"] = {
+   { "Slack", "/usr/share/slack/slack" },
+   { "Pidgin", "pidgin" },
+}
+
+myfavsmenu["Media"] = {
    { "Plex", "/opt/google/chrome/google-chrome --app=http://plex.tv/web/app" },
    { "Spotify", "spotify" },
-   { "Synergy", "synergy" },
+   { "PulseAudio", "pavucontrol" },
+}
+
+myfavsmenu["System"] = {
+   { "Thunar", "thunar" },
    { "Gnome SysMon", "gnome-system-monitor" },
    { "Windows 7", '/usr/lib/virtualbox/VirtualBox --comment "Windows 7" --startvm "5245bc87-94da-4c9b-a6f3-254403c8d1a2"' },
    { "Arch Linux", '/usr/lib/virtualbox/VirtualBox --comment "clean arch linux_4" --startvm "08bf8997-4b97-434a-ad7e-11899e830435"' },
+}
+
+myfavsmenu["Misc"] = {
    { "Notes - Personal", "/opt/google/chrome/google-chrome --app=file:///home/mthornba/git/public/gitlab-encephalon/notes/Personal/Notes.chunked/index.html" },
    { "Notes - Core", "/opt/google/chrome/google-chrome --app=file:///home/mthornba/git/mthornba/Notes/Core\\ Guide/Core_Guide.chunked/index.html" },
-   { "Cisco VPN", "/opt/cisco/anyconnect/bin/vpnui" },
-   { "Dia", "/usr/bin/dia" },
-   { "PulseAudio", "pavucontrol" },
+}
+
+myfavsmenu["Favs"] = {
+   { "Dev", myfavsmenu["Dev"] },
+   { "Apps", myfavsmenu["Apps"] },
+   { "Chat", myfavsmenu["Chat"] },
+   { "Media", myfavsmenu["Media"] },
+   { "System", myfavsmenu["System"] },
+   { "Misc", myfavsmenu["Misc"] }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "Favs", myfavsmenu },
+                                    { "Favs", myfavsmenu["Favs"] },
                                     { "open terminal", terminal },
                                     { "open desktop", "thunar file:/home/mthornba/Desktop" }
                                   }
