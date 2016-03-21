@@ -6,9 +6,12 @@
 	"installed_packages":
 	[
 		"1337 Color Scheme",
+		"AsciiDoc",
 		"Monokai Extended",
 		"Monokai JSON+",
 		"Package Control",
+		"RuboCop",
+		"SublimeLinter",
 		"Theme - amCoder",
 		"Theme - Soda",
 		"Theme - Sodarized"

@@ -1,7 +1,8 @@
 {
-	"color_scheme": "Packages/Monokai JSON+/Monokai JSON+.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
 	"default_line_ending": "unix",
 	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Ubuntu Mono",
 	"font_size": 11,
 	"ignored_packages":
 	[

@@ -89,6 +89,7 @@ alias kcb="knife cookbook"
 alias kcl="knife client"
 alias kn="knife node"
 alias kv="knife vsphere"
+alias kdb="knife data bag"
 
 function csdiff () { sdiff -w $(stty size | awk '{print $NF}') $@ | colordiff; }
 function rolediff () { csdiff <(knife role show ${1%.json} -Fj) ${1} }

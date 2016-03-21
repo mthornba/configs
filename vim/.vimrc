@@ -1,11 +1,12 @@
 syntax enable
+set paste
 
 " Use bold bright fonts.
 set background=dark
 
 " Show tabs and trailing characters.
-"set listchars=tab:»·,trail:·,eol:¬
-set listchars=tab:»·,trail:·
+set listchars=tab:»·,trail:·,eol:¬
+"set listchars=tab:»·,trail:·
 set list
 
 " Reformat paragraphs and list.
