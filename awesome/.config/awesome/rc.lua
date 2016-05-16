@@ -123,7 +123,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "1:", "2:", "3:", "4:", "5:", "6:", "7: ", "8: ", "9: " }, s, layouts[2])
+    tags[s] = awful.tag({ "1:", "2:", "3:", "4:", "5:", "6:", "7: ", "8: ", "9: " }, s, layouts[10])
 end
 -- }}}
 
@@ -141,12 +141,12 @@ myfavsmenu = {}
 myfavsmenu["Dev"] = {
    { "Atom", "/usr/share/atom/atom" },
    { "Sublime 2", '/usr/local/Sublime\\ Text\\ 2/sublime_text' },
-   { "Cisco VPN", "/opt/cisco/anyconnect/bin/vpnui" },
 }
 
 myfavsmenu["Apps"] = {
    { "Chrome", "/usr/bin/google-chrome-stable" },
    { "Firefox", "firefox" },
+   { "Vivaldi", "/usr/bin/vivaldi-stable" },
    { "Remmina", "remmina" },
    { "Shutter", "shutter" },
    { "Synergy", "synergy" },
@@ -154,7 +154,7 @@ myfavsmenu["Apps"] = {
 }
 
 myfavsmenu["Chat"] = {
-   { "Slack", "/usr/share/slack/slack" },
+   { "Slack", "/usr/bin/slack" },
    { "Pidgin", "pidgin" },
 }
 
@@ -167,8 +167,10 @@ myfavsmenu["Media"] = {
 myfavsmenu["System"] = {
    { "Thunar", "thunar" },
    { "Gnome SysMon", "gnome-system-monitor" },
+   { "VirtualBox", "/usr/bin/VirtualBox" },
    { "Windows 7", '/usr/lib/virtualbox/VirtualBox --comment "Windows 7" --startvm "5245bc87-94da-4c9b-a6f3-254403c8d1a2"' },
    { "Arch Linux", '/usr/lib/virtualbox/VirtualBox --comment "clean arch linux_4" --startvm "08bf8997-4b97-434a-ad7e-11899e830435"' },
+   { "Cisco VPN", "/opt/cisco/anyconnect/bin/vpnui" },
 }
 
 myfavsmenu["Misc"] = {
@@ -299,7 +301,9 @@ root.buttons(awful.util.table.join(
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey,           }, ",",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey,           }, ".",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -363,15 +367,15 @@ globalkeys = awful.util.table.join(
 
     -- Volume Control
     awful.key({ }, "XF86AudioLowerVolume", function ()
-        awful.util.spawn('sh -c "pactl set-sink-mute 0 false ; pactl -- set-sink-volume 0 -10%"') end),
+        awful.util.spawn('sh -c "pactl set-sink-mute 0 false ; pactl -- set-sink-volume @DEFAULT_SINK@ -10%"') end),
     awful.key({ }, "XF86AudioRaiseVolume", function ()
-        awful.util.spawn('sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +10%"') end),
+        awful.util.spawn('sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume @DEFAULT_SINK@ +10%"') end),
     awful.key({ }, "XF86AudioMute", function ()
-        awful.util.spawn("pactl set-sink-mute 0 toggle") end),
+        awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
 
    -- Lock Screen
    awful.key({ modkey }, "F12", function ()
-        awful.util.spawn("/usr/bin/i3lock -p win -tdc 002b36 -i /home/mthornba/Pictures/Wallpaper/cat_unicorn.png") end),
+        awful.util.spawn("/usr/bin/i3lock -p win -tdc 002b36 -i /home/mthornba/Pictures/Wallpaper/Alex_Grey-Net_of_Being-BW-1920x1080.png") end),
 
    -- Snippy
    awful.key({ modkey }, "s", function ()
