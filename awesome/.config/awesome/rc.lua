@@ -10,6 +10,9 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+-- Vicious Widgets
+vicious = require("vicious")
+
  -- Quick launch bar widget BEGINS
  function find_icon(icon_name, icon_dirs)
     if string.sub(icon_name, 1, 1) == '/' then
@@ -145,6 +148,7 @@ myfavsmenu["Dev"] = {
 
 myfavsmenu["Apps"] = {
    { "Chrome", "/usr/bin/google-chrome-stable" },
+   { "Postman", "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=fhbjgbiflinjbdggehcddcbncdddomop" },
    { "Firefox", "firefox" },
    { "Vivaldi", "/usr/bin/vivaldi-stable" },
    { "Remmina", "remmina" },
@@ -269,6 +273,30 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(function(c)
                                               return awful.widget.tasklist.label.currenttags(c, s)
                                           end, mytasklist.buttons)
+    -- Create CPU widget
+      -- Initialize widget
+      cpuwidget = awful.widget.graph()
+      -- Graph properties
+      cpuwidget:set_width(50)
+      cpuwidget:set_background_color("#494B4F")
+      cpuwidget:set_color("#FF5656")
+      cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
+      -- Register widget
+      vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
+      
+    -- Create Memory widget
+      -- Initialize widget
+      memwidget = awful.widget.progressbar()
+      -- Progressbar properties
+      memwidget:set_width(12)
+      memwidget:set_height(10)
+      memwidget:set_vertical(true)
+      memwidget:set_background_color("#494B4F")
+      memwidget:set_border_color(nil)
+      memwidget:set_color("#AECF96")
+      memwidget:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
+      -- Register widget
+      vicious.register(memwidget, vicious.widgets.mem, "$1", 13)
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
@@ -284,6 +312,8 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         s == 1 and mysystray or nil,
+	memwidget,
+	cpuwidget,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
@@ -379,7 +409,11 @@ globalkeys = awful.util.table.join(
 
    -- Snippy
    awful.key({ modkey }, "s", function ()
-        awful.util.spawn("/home/mthornba/git/public/gitlab-encephalon/scripts/snippy.sh") end)
+        awful.util.spawn("/home/mthornba/git/public/gitlab-encephalon/scripts/snippy.sh") end),
+
+   -- PrintScreen
+   awful.key({ }, "Print", function ()
+        awful.util.spawn("scrot -u") end)
 )
 
 clientkeys = awful.util.table.join(
