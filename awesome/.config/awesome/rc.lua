@@ -289,7 +289,7 @@ for s = 1, screen.count() do
       memwidget = awful.widget.progressbar()
       -- Progressbar properties
       memwidget:set_width(12)
-      memwidget:set_height(10)
+      memwidget:set_height(20)
       memwidget:set_vertical(true)
       memwidget:set_background_color("#494B4F")
       memwidget:set_border_color(nil)
